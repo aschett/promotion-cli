@@ -1,6 +1,5 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -22,6 +21,10 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("promote called")
+		if len(args) != 2 {
+			fmt.Printf("You have to provide exactly one source and destination repository")
+			return
+		}
 	},
 }
 
@@ -38,3 +41,5 @@ func init() {
 	// is called directly, e.g.:
 	// promoteCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
+
+func promoteRepository()
