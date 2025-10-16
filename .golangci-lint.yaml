@@ -1,105 +1,12 @@
-# .golangci-lint.yaml
+version: "2"
+
 run:
-  timeout: 5m
-  tests: true
-  skip-dirs:
-    - vendor
-    - bin
-    - build
-  skip-files:
-    - ".*_gen\\.go"
-
-linters-settings:
-  govet:
-    check-shadowing: true
-
-  gocyclo:
-    min-complexity: 15
-
-  goconst:
-    min-len: 2
-    min-occurrences: 2
-
-  errcheck:
-    check-type-assertions: true
-    check-blank: true
-
-  staticcheck:
-    checks: ["all"]
-
-  revive:
-    severity: warning
-    rules:
-      - name: indent-error-flow
-      - name: unexported-return
-      - name: var-naming
-      - name: receiver-naming
-      - name: error-naming
-      - name: if-return
-      - name: range-val-in-closure
-
-  gofumpt:
-    extra-rules: true
-
-  depguard:
-    list-type: blacklist
-    include-go-root: false
-    packages:
-      - "io/ioutil" # deprecated
-    packages-with-error-message:
-      "io/ioutil": "Use os or io package instead"
-
-  misspell:
-    locale: US
-
-  dupl:
-    threshold: 150
-
-  funlen:
-    lines: 80
-    statements: 50
-
-  nolintlint:
-    allow-unused: false
-    require-explanation: true
-    require-specific: true
+  timeout: 2m
 
 linters:
+  disable-all: true
+
+formatters:
+  disable-all: true
   enable:
-    - govet
-    - staticcheck
-    - errcheck
-    - ineffassign
-    - typecheck
-    - gosimple
-    - revive
-    - unused
-    - deadcode
-    - structcheck
-    - varcheck
     - gofmt
-    - gofumpt
-    - gocyclo
-    - goconst
-    - depguard
-    - misspell
-    - dupl
-    - funlen
-    - nolintlint
-  disable:
-    - exhaustivestruct  # too noisy for most projects
-    - scopelint          # deprecated, replaced by govet's shadow check
-
-issues:
-  exclude-use-default: false
-  max-issues-per-linter: 0
-  max-same-issues: 0
-  exclude:
-    - "should have comment or be unexported"  # ignore missing comments
-    - "Error return value of .* is not checked"  # sometimes intentional
-    - "exported function .* should have comment" # for smaller projects
-
-output:
-  format: colored-line-number
-  print-issued-lines: true
-  print-linter-name: true

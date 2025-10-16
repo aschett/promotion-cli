@@ -41,5 +41,3 @@ func init() {
 	// is called directly, e.g.:
 	// promoteCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-func promoteRepository()
